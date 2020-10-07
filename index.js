@@ -13,11 +13,11 @@ const io = socketio(server);
 
 io.adapter(
   redis({
-    host: 'ec2-54-197-165-193.compute-1.amazonaws.com',
-    port: '6379',
-    user: 'h',
+    host: 'HOST',
+    port: 'PORT',
+    user: 'USER',
     password:
-      'p757ae877103035ab44e16e13c2a79987c6f21b7129fef242e9e08536a0164ac3',
+      'PW',
   })
 );
 
