@@ -2,7 +2,7 @@ const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
 const cors = require('cors');
-
+const redis = require('socket.io-redis');
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
 
 const router = require('./router');
@@ -10,6 +10,16 @@ const router = require('./router');
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
+
+io.adapter(
+  redis({
+    host: 'ec2-54-197-165-193.compute-1.amazonaws.com',
+    port: '6379',
+    user: 'h',
+    password:
+      'p757ae877103035ab44e16e13c2a79987c6f21b7129fef242e9e08536a0164ac3',
+  })
+);
 
 app.use(cors());
 app.use(router);
@@ -67,5 +77,5 @@ io.on('connect', (socket) => {
 });
 
 server.listen(process.env.PORT || 5000, () =>
-  console.log(`Server has started.`)
+  console.log(`Server has Started.`)
 );
